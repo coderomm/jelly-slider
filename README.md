@@ -1,36 +1,61 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Jelly Slider
 
-## Getting Started
+A WebGPU-powered interactive jelly slider component built with [TypeGPU](https://github.com/typegpu/typegpu), featuring real-time raymarched SDF rendering, physics-based animation, and TAA.
 
-First, run the development server:
+Inspired by the work of [Voicu Apostol](https://x.com/cerpow/status/1964953851603358112).
+
+## Tech stack
+
+- **Next.js** (App Router) – demo app
+- **TypeGPU** – WebGPU abstraction and shader authoring
+- **@typegpu/sdf** – SDF primitives and operations
+- **React** – optional React wrapper component
+
+## Running the demo
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
+bun install
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000). The jelly slider runs in the browser and requires **WebGPU** support (Chrome, Edge, or other Chromium-based browsers).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Using the component in your project
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### In a Next.js app
 
-## Learn More
+1. Copy the `src/jelly-slider` folder into your project (e.g. under `src/` or `lib/`).
+2. Copy the React wrapper `components/JellySlider.tsx` (or implement your own that calls `initJellySlider`).
+3. Ensure path aliases resolve the jelly-slider entry (e.g. `@/src/jelly-slider` or equivalent).
+4. Render the component in a client tree:
 
-To learn more about Next.js, take a look at the following resources:
+```tsx
+'use client';
+import { JellySlider } from '@/components/JellySlider';
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+export default function Page() {
+  return (
+    <div style={{ width: '100%', height: 400 }}>
+      <JellySlider />
+    </div>
+  );
+}
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Vanilla / no framework
 
-## Deploy on Vercel
+Use the canvas-based API:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```ts
+import { initJellySlider } from './path-to/jelly-slider';
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+const canvas = document.querySelector('canvas');
+const { controls, onCleanup } = await initJellySlider(canvas);
+
+// Optional: use controls for quality, light direction, jelly color, blur
+// When done (e.g. route change): onCleanup();
+```
+
+## License
+
+MIT
