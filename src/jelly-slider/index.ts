@@ -103,12 +103,21 @@ const filteringSampler = root['~unstable'].createSampler({
   minFilter: 'linear',
 });
 
+/** Vertical FOV that keeps horizontal FOV at least 45° on portrait so the scene scales correctly on mobile. */
+function getFovForAspect(width: number, height: number): number {
+  const baseFovY = Math.PI / 4;
+  const aspect = width / height;
+  if (aspect >= 1) return baseFovY;
+  const fovY = 2 * Math.atan(Math.tan(baseFovY / 2) / aspect);
+  return Math.min(fovY, Math.PI * 0.6); // cap vertical FOV to avoid extreme distortion
+}
+
 const camera = new CameraController(
   root,
   d.vec3f(0.024, 2.7, 1.9),
   d.vec3f(0, 0, 0),
   d.vec3f(0, 1, 0),
-  Math.PI / 4,
+  getFovForAspect(width, height),
   width,
   height,
 );
@@ -946,7 +955,7 @@ function handleResize() {
     canvas.width * qualityScale,
     canvas.height * qualityScale,
   ];
-  camera.updateProjection(Math.PI / 4, width, height);
+  camera.updateProjection(getFovForAspect(width, height), width, height);
   textures = createTextures(root, width, height);
   backgroundTexture = createBackgroundTexture(root, width, height);
   taaResolver.resize(width, height);

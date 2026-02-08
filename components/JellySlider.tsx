@@ -11,14 +11,17 @@ const attributionStyles: React.CSSProperties = {
   zIndex: 2,
   backgroundColor: 'rgba(0, 0, 0, 0.7)',
   color: 'white',
-  padding: '0.75rem 1rem',
+  padding: '0.5rem 0.75rem',
   borderRadius: '0.625rem',
   userSelect: 'none',
   pointerEvents: 'auto',
   transition: 'opacity 0.5s',
-  fontSize: '1rem',
+  fontSize: 'clamp(0.75rem, 2.5vw, 1rem)',
   textAlign: 'center',
+  maxWidth: 'calc(100vw - 2rem)',
   whiteSpace: 'nowrap',
+  overflow: 'hidden',
+  textOverflow: 'ellipsis',
 };
 
 export interface JellySliderProps {
@@ -134,7 +137,7 @@ export function JellySlider({ className, attribution = true }: JellySliderProps)
     <div
       ref={containerRef}
       className={className}
-      style={{ position: 'absolute', inset: 0, width: '100%', height: '100%' }}
+      style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', minWidth: 0, minHeight: 0 }}
     >
       {status === 'loading' && (
         <div

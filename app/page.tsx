@@ -18,16 +18,21 @@ const GitHubIcon = () => (
 
 export default function Home() {
   return (
-    <div className="fixed inset-0 w-screen h-screen overflow-hidden bg-black">
+    <div
+      className="fixed inset-0 w-full max-w-[100vw] min-w-0 min-h-[100dvh] overflow-hidden bg-black"
+      style={{
+        padding: 'env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left)',
+      }}
+    >
       <a
         href={appConfig.githubUrl}
         target="_blank"
         rel="noopener noreferrer"
-        className="absolute top-4 right-4 z-10 flex items-center gap-2 rounded-lg bg-white/10 px-3 py-2 text-sm font-medium text-white no-underline backdrop-blur-sm transition hover:bg-white/20 hover:text-white"
+        className="absolute top-4 right-4 z-10 flex items-center gap-1.5 sm:gap-2 rounded-lg bg-white/10 px-2 py-1.5 sm:px-3 sm:py-2 text-xs sm:text-sm font-medium text-white no-underline backdrop-blur-sm transition hover:bg-white/20 hover:text-white"
         aria-label="View source on GitHub"
       >
         <GitHubIcon />
-        <span>GitHub</span>
+        <span className="hidden sm:inline">GitHub</span>
       </a>
       <JellySlider className="w-full h-full" />
     </div>
