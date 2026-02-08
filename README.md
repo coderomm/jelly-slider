@@ -2,7 +2,9 @@
 
 A WebGPU-powered interactive jelly slider component built with [TypeGPU](https://github.com/typegpu/typegpu), featuring real-time raymarched SDF rendering, physics-based animation, and TAA.
 
-Inspired by the work of [Voicu Apostol](https://x.com/cerpow/status/1964953851603358112).
+## Credits
+
+The original jelly slider concept and implementation are by **[Voicu Apostol](https://x.com/cerpow)** ([original post](https://x.com/cerpow/status/1964953851603358112)). This repository is a Next.js port and reorganization of that work; the core rendering and physics logic are derived from it.
 
 ## Tech stack
 
