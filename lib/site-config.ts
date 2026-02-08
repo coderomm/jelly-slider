@@ -1,34 +1,63 @@
-const defaultUrl = "https://jelly-slider.vercel.app";
-
 export const appConfig = {
   name: "Jelly Slider",
   shortName: "Jelly Slider",
   description:
-    "A WebGPU-powered interactive jelly slider built with TypeGPU — real-time raymarched SDF rendering, physics-based animation, and TAA. Inspired by Voicu Apostol.",
-  tagline: "WebGPU Jelly Slider Demo",
+    "An interactive jelly slider built with WebGPU and TypeGPU featuring real-time raymarched SDF rendering, physics-based deformation, elastic motion, and temporal anti-aliasing (TAA). A modern UI animation and shader experiment for the web.",
+  tagline: "Interactive WebGPU Jelly Slider",
 
-  url: process.env.NEXT_PUBLIC_APP_URL ?? defaultUrl,
+  url: 'https://jelly-slider-demo.vercel.app',
   githubUrl: "https://github.com/coderomm/jelly-slider",
 
   seo: {
-    defaultTitle: "Jelly Slider – WebGPU Jelly Slider Demo",
+    defaultTitle:
+      "Jelly Slider — WebGPU Interactive Elastic Slider Demo (TypeGPU + SDF)",
     defaultDescription:
-      "A WebGPU-powered interactive jelly slider built with TypeGPU — real-time raymarched SDF rendering, physics-based animation, and TAA. Inspired by Voicu Apostol.",
+      "A WebGPU-powered elastic jelly slider built with TypeGPU. Demonstrates raymarching, signed distance fields (SDF), physics-based UI animation, shaders, and real-time rendering in React and Next.js.",
+
     keywords: [
-      "WebGPU",
-      "TypeGPU",
+      // Core project keywords
       "jelly slider",
-      "SDF",
-      "raymarching",
-      "React",
-      "Next.js",
-      "WebGL",
-      "shader",
-      "interactive demo",
+      "elastic slider",
+      "interactive slider UI",
+      "physics slider",
+      "deformable UI",
+      "elastic UI animation",
+
+      // Graphics + rendering
+      "WebGPU demo",
+      "raymarching demo",
+      "SDF rendering",
+      "signed distance field",
+      "shader animation",
+      "GPU rendering",
+      "real-time rendering",
+      "procedural graphics",
+      "3D UI rendering",
+      "temporal anti-aliasing",
+      "TAA rendering",
+
+      // Dev ecosystem
+      "TypeGPU",
+      "React WebGPU",
+      "Next.js WebGPU",
+      "WebGL alternative",
+      "frontend graphics",
+      "creative coding",
+      "shader playground",
+      "generative UI",
+
+      // Discovery keywords
+      "modern UI animation",
+      "experimental UI component",
+      "interactive web demo",
+      "portfolio UI experiment",
+      "motion UI demo",
+      "advanced frontend animation",
     ],
-    author: "Jelly Slider",
+
+    author: "Voicu Apostol",
     ogImage: "/og.png",
-    twitterHandle: "",
+    twitterHandle: "@cerpow",
     googleVerification: "",
   },
 
@@ -36,7 +65,13 @@ export const appConfig = {
     themeStorageKey: "jelly-slider-theme",
   },
 
-  features: {},
+  features: {
+    webgpu: true,
+    raymarching: true,
+    sdfRendering: true,
+    physicsAnimation: true,
+    taa: true,
+  },
 } as const;
 
 export type AppConfig = typeof appConfig;
